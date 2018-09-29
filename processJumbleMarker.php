@@ -24,7 +24,7 @@
     
     function displayError ($fieldName, $errorMsg) {
         global $errorCount;
-        echo "Error for \"$fieldName\": $errorMsg<br>\n";
+        echo "Error for \"$fieldName\":$errorMsg<br>\n";
         ++$errorCount;
     }
     function validateWord ($data,$fieldName) {
@@ -34,18 +34,21 @@
             displayError($fieldName, "This field is required");
             ++$errorCount;
             $retval = "";
-        }
-        return $data;
-    }
+        } 
     else{
         $retval = trim($data);
         $retval = stripslashes($retval);
-        if (strlen($retval) < 4 || strlen($retval) > 7){
+        if (strlen($retval) < 4 || strlen($retval) > 7) {
             displayError($fieldName, "Words must be between 4 and 7 characters in length");
         }
-        if (preg_match("/^[A-Za-z]+$/i", $retval) === 0){
-            displayError($fieldName, "Words must consist only of letters");
+        if (preg_match("/^[A-Za-z]+$/i", $retval) == 0) {
+           displayError($fieldName, "Words must consist only of letters"); 
+            }
         }
+        // Scrambles and capitalizes words
+        $retval = strtoupper($retval);
+        $retval = str_shuffle($retval);
+        return $retval;
     }
     $words[] = validateWord($_POST['word1'], "Word 1");
     $words[] = validateWord($_POST['word2'], "Word 2");
