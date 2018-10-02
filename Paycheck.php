@@ -18,8 +18,27 @@
 <body>
     <h1>Paycheck</h1>
     <?php
+
         echo "<p><a href=\"Paycheck.html\">Redo Form </a></p>\n";
     ?>
 </body>
 
 </html>
+
+
+<!--
+    function validateInput($data, $fieldName){
+        global $errorCount;
+        // If field is empty, inform the user
+        if (empty($data)){
+            echo "\"$fieldName\" is a required field.<br>\n";
+            ++$errorCount;
+            $retval = "";
+        }
+        // Else submit
+        else {
+            $retval = trim($data);
+            $retval = stripslashes($retval);
+        }
+        return $retval;
+    }-->
